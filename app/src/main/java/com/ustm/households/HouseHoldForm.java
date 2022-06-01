@@ -33,11 +33,12 @@ public class HouseHoldForm extends AppCompatActivity {
         dao = new houseHoldDAO(this);
 
         Intent i = getIntent();
+
         if (i.hasExtra("Familia")){
             model =(household) i.getSerializableExtra("Familia");
             famName.setText(model.getName());
             famAddress.setText(model.getAddress());
-            famCell.setText(model.getCell());
+            famCell.setText(model.getCell().toString());
         }
 
 

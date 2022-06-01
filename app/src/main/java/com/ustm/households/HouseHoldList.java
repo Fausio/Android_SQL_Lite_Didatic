@@ -120,7 +120,7 @@ public class HouseHoldList extends AppCompatActivity {
         AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         final  household modelTOUpdate= householdsFilter.get(menuInfo.position);
 
-        Intent i = new Intent(this,HouseHoldList.class);
+        Intent i = new Intent(HouseHoldList.this,HouseHoldForm.class);
         i.putExtra("Familia",modelTOUpdate);
         startActivity(i);
     }

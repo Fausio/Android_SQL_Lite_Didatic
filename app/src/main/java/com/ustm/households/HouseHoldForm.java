@@ -1,5 +1,6 @@
 package com.ustm.households;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ public class HouseHoldForm extends AppCompatActivity {
     private EditText famAddress;
     private EditText famCell;
     private com.ustm.data.houseHoldDAO dao;
+    private household model = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,19 +32,42 @@ public class HouseHoldForm extends AppCompatActivity {
         famCell = findViewById(R.id.editTextPhone);
         dao = new houseHoldDAO(this);
 
+        Intent i = getIntent();
+        if (i.hasExtra("Familia")){
+            model =(household) i.getSerializableExtra("Familia");
+            famName.setText(model.getName());
+            famAddress.setText(model.getAddress());
+            famCell.setText(model.getCell());
+        }
+
+
         Button btnSave =  findViewById(R.id.BtnSaveHouseHold);
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                household model = new household();
-                model.setName(famName.getText().toString());
-                model.setAddress(famAddress.getText().toString());
-                model.setCell(new Integer(famCell.getText().toString()));
 
-                long id =  dao.add(model);
+                if (model == null) {
 
-                Toast toast =  Toast.makeText(getApplicationContext(), "Família:" + model.getName() + " id"+ id +", adicionada com sucesso !", Toast.LENGTH_SHORT);
-                toast.show();
+                    model = new household();
+                    model.setName(famName.getText().toString());
+                    model.setAddress(famAddress.getText().toString());
+                    model.setCell(new Integer(famCell.getText().toString()));
+
+                    long id =  dao.add(model);
+
+                    Toast toast =  Toast.makeText(getApplicationContext(), "Família:" + model.getName() + " id"+ id +", adicionada com sucesso !", Toast.LENGTH_SHORT);
+                    toast.show();
+                }else {
+
+                    model.setName(famName.getText().toString());
+                    model.setAddress(famAddress.getText().toString());
+                    model.setCell(new Integer(famCell.getText().toString()));
+                    dao.update(model);
+
+                    Toast toast =  Toast.makeText(getApplicationContext(), "Família:" + model.getName() + " id"+ model.getId() +", Editada com sucesso !", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
             }
         });
     }

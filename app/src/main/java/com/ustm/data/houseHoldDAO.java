@@ -49,4 +49,18 @@ public class houseHoldDAO {
 
         return households;
     }
+
+    public  void delete(household model){
+        db.delete("household","id = ?", new String[]{model.getId().toString()});
+    }
+
+    public void update(household model) {
+
+        ContentValues v = new ContentValues();
+        v.put("name",model.getName());
+        v.put("address",model.getAddress());
+        v.put("cell",model.getCell().toString());
+
+        db.update("household", v,"id =?", new String[]{model.getId().toString()});
+    }
 }

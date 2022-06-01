@@ -23,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
                  startActivity(intent);
             }
         });
+
+        Button btnlist = findViewById(R.id.call_hh_list);
+        btnlist.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(MainActivity.this, HouseHoldList.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

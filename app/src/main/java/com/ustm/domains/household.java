@@ -1,5 +1,7 @@
 package com.ustm.domains;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.math.BigInteger;
 
@@ -8,10 +10,18 @@ public class household implements Serializable {
     private Integer id;
     private  String name;
     private  String address;
-    private BigInteger cell;
+    private Integer cell;
 
     public String getName() {
         return name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -26,11 +36,16 @@ public class household implements Serializable {
         this.address = address;
     }
 
-    public BigInteger getCell() {
+    public Integer getCell() {
         return cell;
     }
 
-    public void setCell(BigInteger cell) {
+    public void setCell(Integer cell) {
         this.cell = cell;
+    }
+
+    @Override
+    public String toString()  {
+        return  getName();
     }
 }

@@ -37,7 +37,7 @@ public class HouseHoldForm extends AppCompatActivity {
                 household model = new household();
                 model.setName(famName.getText().toString());
                 model.setAddress(famAddress.getText().toString());
-                model.setCell(new BigInteger(famCell.getText().toString()));
+                model.setCell(new Integer(famCell.getText().toString()));
 
                 long id =  dao.add(model);
 

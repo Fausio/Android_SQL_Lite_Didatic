@@ -1,8 +1,9 @@
 package com.ustm.domains;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 
-public class household {
+public class household implements Serializable {
 
     private Integer id;
     private  String name;
